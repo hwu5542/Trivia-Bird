@@ -7,29 +7,29 @@ import javax.persistence.Id;
 public class Profile {
 	@Id
 	private String username;
-	private String Password;
-	private String ScreenName;
-	private String Email;
-	private String Bio;
+	private String password;
+	private String screenName;
+	private String email;
+	private String bio;
 	private int accuracy;
 	private int number_of_questions;
 	private int score;
 	
+	public Profile() {
+		super();
+	}
+
 	public Profile(String username, String password, String screenName, String email, String bio, int accuracy,
 			int number_of_questions, int score) {
 		super();
 		this.username = username;
-		Password = password;
-		ScreenName = screenName;
-		Email = email;
-		Bio = bio;
+		this.password = password;
+		this.screenName = screenName;
+		this.email = email;
+		this.bio = bio;
 		this.accuracy = accuracy;
 		this.number_of_questions = number_of_questions;
 		this.score = score;
-	}
-
-	public Profile() {
-		super();
 	}
 
 	public String getUsername() {
@@ -41,35 +41,35 @@ public class Profile {
 	}
 
 	public String getPassword() {
-		return Password;
+		return password;
 	}
 
 	public void setPassword(String password) {
-		Password = password;
+		this.password = password;
 	}
 
 	public String getScreenName() {
-		return ScreenName;
+		return screenName;
 	}
 
 	public void setScreenName(String screenName) {
-		ScreenName = screenName;
+		this.screenName = screenName;
 	}
 
 	public String getEmail() {
-		return Email;
+		return email;
 	}
 
 	public void setEmail(String email) {
-		Email = email;
+		this.email = email;
 	}
 
 	public String getBio() {
-		return Bio;
+		return bio;
 	}
 
 	public void setBio(String bio) {
-		Bio = bio;
+		this.bio = bio;
 	}
 
 	public int getAccuracy() {
@@ -94,7 +94,5 @@ public class Profile {
 
 	public void setScore(int score) {
 		this.score = score;
-	}	
-	
-	
+	}
 }
