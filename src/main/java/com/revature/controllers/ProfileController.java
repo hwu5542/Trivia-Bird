@@ -14,7 +14,7 @@ import com.revature.services.ProfileService;
 //this is a sample rest controller
 @RestController
 @RequestMapping(value="profile")
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:3000")
 public class ProfileController {
 	private ProfileService profileService;
 	
