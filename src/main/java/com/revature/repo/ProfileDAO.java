@@ -6,4 +6,5 @@ import com.revature.models.Profile;
 
 public interface ProfileDAO {
 	public List<Profile> getAllProfile();
+	public void insertProfile(Profile newProfile);
 }
