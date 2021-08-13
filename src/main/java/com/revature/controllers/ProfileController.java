@@ -47,8 +47,8 @@ public class ProfileController {
 	
 	@PostMapping
 	public ResponseEntity<Profile> addProfile(@RequestBody Profile profile){
-		String result = profileService.addProfile(profile);
-		if(result.compareTo("Profile successfully added") == 0)
+		Boolean result = profileService.addProfile(profile);
+		if(result)
 			return ResponseEntity.status(HttpStatus.OK).build();
 		else
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();

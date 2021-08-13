@@ -36,15 +36,16 @@ public class ProfileService {
 		return profileDAO.logIn(username, password);
 	}
 	
-	public String addProfile(Profile profile) {
-		String outcome = "";
+	public Boolean addProfile(Profile profile) {
 		Profile profile2 = profileDAO.findByUsername(profile.getUsername());
 		if(profile2.getUsername() == null) {
 			profileDAO.create(profile2);
-			outcome = "Profile successfully added";
+			System.out.println("Profile successfully added");
+			return true;
 		}
-		else
-			outcome = "Profile could not be added";
-		return outcome;
+		else {
+			System.out.println("Profile could not be added");
+			return false;
+		}
 	}
 }
