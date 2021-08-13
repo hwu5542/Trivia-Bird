@@ -1,21 +1,32 @@
 package com.revature.models;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
 @Component
 @Entity
+@Table(name="Profile")
 public class Profile {
 	@Id
+	@Column(name="Username")
 	private String username;
+	@Column(name="Password")
 	private String password;
+	@Column(name="ScreenName")
 	private String screenName;
+	@Column(name="Email")
 	private String email;
+	@Column(name="Bio")
 	private String bio;
+	@Column(name="Accuracy")
 	private int accuracy;
+	@Column(name="Questions")
 	private int number_of_questions;
+	@Column(name="Score")
 	private int score;
 	
 	public Profile() {
