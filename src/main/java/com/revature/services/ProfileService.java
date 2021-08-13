@@ -28,7 +28,23 @@ public class ProfileService {
 	}
 
 
-	public void insertProfile(Profile newProfile) {
-		profileDAO.insertProfile(newProfile);
+//	public void insertProfile(Profile newProfile) {
+//		profileDAO.insertProfile(newProfile);
+//	}
+	
+	public Profile logIn(String username, String password) {
+		return profileDAO.logIn(username, password);
+	}
+	
+	public String addProfile(Profile profile) {
+		String outcome = "";
+		Profile profile2 = profileDAO.findByUsername(profile.getUsername());
+		if(profile2.getUsername() == null) {
+			profileDAO.create(profile2);
+			outcome = "Profile successfully added";
+		}
+		else
+			outcome = "Profile could not be added";
+		return outcome;
 	}
 }
