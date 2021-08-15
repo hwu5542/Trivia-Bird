@@ -1,5 +1,6 @@
 package com.revature.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,14 @@ public class ProfileService {
 	}
 	
 	public List<Profile> getProfiles() {
-		return profileDAO.getAllProfile();
+		List<Profile> topTenProfile = new ArrayList<Profile>();
+		int count = 0;
+		for (Profile item: profileDAO.getAllProfile()) {
+			if (count ++ < 10) {
+				topTenProfile.add(item);
+			}
+		}
+		return topTenProfile;
 	}
 
 	public Profile logIn(String username, String password) {

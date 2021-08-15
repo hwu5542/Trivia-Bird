@@ -2,7 +2,9 @@ package com.revature.repo;
 
 import java.util.List;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -33,8 +35,10 @@ public class ProfileDAOImpl implements ProfileDAO {
 	@Override
 	public List<Profile> getAllProfile() {
 		Session session = sessionFactory.getCurrentSession();
-		CriteriaQuery<Profile> criteriaQuery = session.getCriteriaBuilder().createQuery(Profile.class);
-		criteriaQuery.from(Profile.class);
+		CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+		CriteriaQuery<Profile> criteriaQuery = criteriaBuilder.createQuery(Profile.class);
+		Root<Profile> root = criteriaQuery.from(Profile.class);
+		criteriaQuery.orderBy(criteriaBuilder.asc(root.get("score")));
 		return session.createQuery(criteriaQuery).getResultList();
 	}
 	
