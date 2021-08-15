@@ -7,9 +7,8 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
-@Component
+
 @Entity
-@Table(name="Profile")
 public class Profile {
 	@Id
 	private String username;
