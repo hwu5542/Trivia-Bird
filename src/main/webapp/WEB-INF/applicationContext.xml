@@ -23,10 +23,12 @@
      <bean name="ourDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
     	<property name="driverClassName" value="org.postgresql.Driver" />
     	<!-- Add your database and creds. -->
-    	<property name="url" value="jdbc:postgresql://hwu5542-db.cxoqspxuezyw.us-east-2.rds.amazonaws.com/trivia" />
+    	<property name="url" value="jdbc:postgresql://training-db.cfhaaft3h8hf.us-east-2.rds.amazonaws.com/trivia_bird" />
     	<property name="username" value="postgres" />
     	<property name="password" value="password" />
     </bean>
+    
+    
     
     <bean name="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
     	<property name="dataSource" ref="ourDataSource" />
@@ -34,7 +36,7 @@
     	<property name="hibernateProperties">
     		<props>
     			<prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
-    			<prop key="hibernate.default_schema">testtrivia</prop>
+    			<prop key="hibernate.default_schema">spring</prop>
     			<prop key="show_sql">true</prop>
     			<prop key="hibernate.hbm2ddl.auto">create</prop>
     		</props>

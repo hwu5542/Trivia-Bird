@@ -2,6 +2,7 @@ package com.revature.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,6 +12,7 @@ import com.revature.services.GameService;
 
 @RestController
 @RequestMapping(value="/game")
+@CrossOrigin
 public class GameController {
 	private GameService gService;
 	
@@ -21,8 +23,8 @@ public class GameController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Profile> updateUser(Profile profile) {
-		//gService.updateProfile
+	public ResponseEntity<Profile> updateUser() {
+		System.out.println("Gamecontroller post triggered");
 		
 		return null;
 	}
