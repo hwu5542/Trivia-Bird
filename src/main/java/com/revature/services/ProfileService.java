@@ -27,25 +27,19 @@ public class ProfileService {
 		return profileDAO.getAllProfile();
 	}
 
-
-//	public void insertProfile(Profile newProfile) {
-//		profileDAO.insertProfile(newProfile);
-//	}
-	
 	public Profile logIn(String username, String password) {
 		return profileDAO.logIn(username, password);
 	}
 	
 	public Boolean addProfile(Profile profile) {
 		Profile profile2 = profileDAO.findByUsername(profile.getUsername());
-		if(profile2.getUsername() == null) {
-			profileDAO.create(profile2);
+		if(profile2 == null) {
+			profileDAO.create(profile);
 			System.out.println("Profile successfully added");
 			return true;
 		}
-		else {
-			System.out.println("Profile could not be added");
-			return false;
-		}
+
+    System.out.println("Profile could not be added");
+		return false;
 	}
 }

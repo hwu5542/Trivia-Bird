@@ -34,12 +34,6 @@ public class ProfileDAOImpl implements ProfileDAO {
 		return session.createQuery("FROM profile").list();
 	}
 	
-//	@Override
-//	public void insertProfile(Profile newProfile) {
-//		Session session = sessionFactory.getCurrentSession();
-//		
-//		session.saveOrUpdate(newProfile);
-//	}
 	
 	@Override
 	public void create(Profile profile) {
