@@ -24,7 +24,6 @@ public class ProfileDAOImpl implements ProfileDAO {
 	@Autowired
 	public ProfileDAOImpl(SessionFactory sessionFactory) {
 		super();
-		System.out.println("session instantiated: ");
 		this.sessionFactory = sessionFactory;
 	}
 	

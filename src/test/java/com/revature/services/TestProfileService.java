@@ -3,7 +3,7 @@ package com.revature.services;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;import com.revature.Config.TestConfig;
+import org.junit.jupiter.api.Test;
 
 import com.revature.Config.TestConfig;
 import com.revature.models.Profile;

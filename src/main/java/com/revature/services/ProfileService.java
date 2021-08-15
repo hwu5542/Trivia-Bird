@@ -45,6 +45,6 @@ public class ProfileService {
 		}
 		else
 			outcome = "Profile could not be added";
-		return "Profile successfully added";
+		return outcome;
 	}
 }
