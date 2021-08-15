@@ -22,6 +22,7 @@
     
      <bean name="ourDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
     	<property name="driverClassName" value="org.postgresql.Driver" />
+    	<!-- Add your database and creds. -->
     	<property name="url" value="jdbc:postgresql://hwu5542-db.cxoqspxuezyw.us-east-2.rds.amazonaws.com/trivia" />
     	<property name="username" value="postgres" />
     	<property name="password" value="password" />
