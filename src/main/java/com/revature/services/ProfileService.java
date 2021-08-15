@@ -1,6 +1,7 @@
 package com.revature.services;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,12 +27,15 @@ public class ProfileService {
 	
 	public List<Profile> getProfiles() {
 		List<Profile> topTenProfile = new ArrayList<Profile>();
+		
+		List<Profile> allProfile = profileDAO.getAllProfile();
+		
 		int count = 0;
-		for (Profile item: profileDAO.getAllProfile()) {
+		for (int index = allProfile.size()-1; index >= 0; index--) {
 			if (count ++ < 10) {
-				topTenProfile.add(item);
-			}
-		}
+				topTenProfile.add(allProfile.get(index));
+			} else break;
+		}		
 		return topTenProfile;
 	}
 
