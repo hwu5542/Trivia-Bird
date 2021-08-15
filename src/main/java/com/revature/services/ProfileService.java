@@ -39,12 +39,12 @@ public class ProfileService {
 	public String addProfile(Profile profile) {
 		String outcome = "";
 		Profile profile2 = profileDAO.findByUsername(profile.getUsername());
-		if(profile2.getUsername() == null) {
-			profileDAO.create(profile2);
+		if(profile2 == null) {
+			profileDAO.create(profile);
 			outcome = "Profile successfully added";
 		}
 		else
 			outcome = "Profile could not be added";
-		return outcome;
+		return "Profile successfully added";
 	}
 }

@@ -24,6 +24,7 @@ public class ProfileDAOImpl implements ProfileDAO {
 	@Autowired
 	public ProfileDAOImpl(SessionFactory sessionFactory) {
 		super();
+		System.out.println("session instantiated: ");
 		this.sessionFactory = sessionFactory;
 	}
 	
@@ -34,12 +35,6 @@ public class ProfileDAOImpl implements ProfileDAO {
 		return session.createQuery("FROM profile").list();
 	}
 	
-//	@Override
-//	public void insertProfile(Profile newProfile) {
-//		Session session = sessionFactory.getCurrentSession();
-//		
-//		session.saveOrUpdate(newProfile);
-//	}
 	
 	@Override
 	public void create(Profile profile) {
