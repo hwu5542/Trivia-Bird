@@ -1,13 +1,12 @@
 package com.revature.services;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import com.revature.Config.TestConfig;
 import com.revature.models.Profile;
-
 
 public class TestProfileService {
 	private static ProfileService profileService;
@@ -31,8 +30,8 @@ public class TestProfileService {
 		newProfile_one.setScore(999);
 		newProfile_one.setScreenName("hwu");
 		
-		String result = profileService.addProfile(newProfile_one);
-		assertEquals("Profile successfully added", result);
+		
+		assertTrue(profileService.addProfile(newProfile_one));
 	}
 	
 	@Test
@@ -47,7 +46,6 @@ public class TestProfileService {
 		newProfile_two.setScore(111);
 		newProfile_two.setScreenName("qwe");
 
-		String result = profileService.addProfile(newProfile_two);
-		assertEquals("Profile successfully added", result);
+		assertTrue(profileService.addProfile(newProfile_two));
 	}
 }
