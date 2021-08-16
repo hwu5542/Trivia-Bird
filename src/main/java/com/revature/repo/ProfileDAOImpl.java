@@ -19,6 +19,7 @@ import com.revature.models.Profile;
 public class ProfileDAOImpl implements ProfileDAO {
 
 	private SessionFactory sessionFactory;
+	private Session session;
 	private boolean testConstructor;
 	
 	public ProfileDAOImpl() {
@@ -37,45 +38,36 @@ public class ProfileDAOImpl implements ProfileDAO {
 		super();
 		this.sessionFactory = sessionFactory;
 		this.testConstructor = true;
+		this.session = this.sessionFactory.openSession();
 	}
 	
 	@Override
 	public List<Profile> getAllProfile() {
-		Session session;
+		if (!this.testConstructor) this.session = sessionFactory.getCurrentSession();
 
-		if (this.testConstructor) session = sessionFactory.openSession();
-		else session = sessionFactory.getCurrentSession();
-
-		CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+		CriteriaBuilder criteriaBuilder = this.session.getCriteriaBuilder();
 		CriteriaQuery<Profile> criteriaQuery = criteriaBuilder.createQuery(Profile.class);
 		Root<Profile> root = criteriaQuery.from(Profile.class);
 		criteriaQuery.orderBy(criteriaBuilder.asc(root.get("score")));
 
-		if (this.testConstructor) {
-			List<Profile> temp = session.createQuery(criteriaQuery).getResultList();
-			session.close();
-			return temp;
-		}
 		return session.createQuery(criteriaQuery).getResultList();
 	}
 	
-	
 	@Override
 	public void createProfile(Profile profile) {
-		Session session;
-		if (this.testConstructor) session = sessionFactory.openSession();
-		else session = sessionFactory.getCurrentSession();
-		session.saveOrUpdate(profile);
-		if (this.testConstructor) session.close();
+		if (!this.testConstructor) this.session = sessionFactory.getCurrentSession();
+		this.session.saveOrUpdate(profile);
 	}
 
 	@Override
 	public Profile findByUsername(String username) {
-		Session session;
-		if (this.testConstructor) session = sessionFactory.openSession();
-		else session = sessionFactory.getCurrentSession();
+		if (!this.testConstructor) this.session = sessionFactory.getCurrentSession();
 		Profile profile = session.get(Profile.class, username);
-		if (this.testConstructor) session.close();
 		return profile;
+	}
+	
+	@Override
+	public void close() {
+		this.session.close();
 	}
 }

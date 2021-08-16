@@ -8,4 +8,5 @@ public interface ProfileDAO {
 	public List<Profile> getAllProfile();
 	public void createProfile(Profile profile);
 	public Profile findByUsername(String username);
+	public void close();
 }
