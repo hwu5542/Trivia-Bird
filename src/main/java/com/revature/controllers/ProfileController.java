@@ -53,7 +53,7 @@ public class ProfileController {
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 	}
 	
-	@PutMapping
+	@PutMapping("/screenName")
 	public ResponseEntity<Profile> updateScreenName(@RequestBody Profile profile){
 		
 		if(profile.getScreenName().length()<1) {
@@ -64,7 +64,7 @@ public class ProfileController {
 		}
 	}
 	
-	@PutMapping
+	@PutMapping("/bio")
 	public ResponseEntity<Profile> updateProfileBio(@RequestBody Profile profile){
 		
 		profileService.updateProfileBio(profile);
