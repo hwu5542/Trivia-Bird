@@ -76,4 +76,5 @@ public class ProfileDAOImpl implements ProfileDAO {
 	public void close() {
 		this.session.close();
 	}
+
 }
