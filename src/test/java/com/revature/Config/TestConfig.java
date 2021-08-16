@@ -1,40 +1,30 @@
 package com.revature.Config;
 
-import java.util.List;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-
 import com.revature.models.Profile;
-import com.revature.repo.ProfileDAO;
-import com.revature.repo.ProfileDAOImpl;
-import com.revature.services.ProfileService;
 
 public class TestConfig {
 	
-	private static SessionFactory sf;
-	private static ProfileDAO profileDAO;
-	private static ProfileService profileService;
 	
-	public ProfileService getProfileService() { 
+	private static SessionFactory sessionFactory;
+	private static Session session;
+	
+	public TestConfig() {
+		super();
+		// setup the session factory
+		Configuration configuration = new Configuration();
+		configuration.addAnnotatedClass(Profile.class);
+		configuration.setProperty("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
+		configuration.setProperty("hibernate.connection.driver_class", "org.h2.Driver");
+		configuration.setProperty("hibernate.connection.url", "jdbc:h2:./mem");
+		configuration.setProperty("hibernate.hbm2ddl.auto", "create");
 
-		profileService = new ProfileService(getProfileDAO());
-		return profileService;
-	}
-	
-	public ProfileDAO getProfileDAO() {
-		profileDAO = new ProfileDAOImpl(getSessionFactory());
-		return profileDAO;
-	}
-	
-	public SessionFactory getSessionFactory() {
-	    sf = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
-	    Session s = sf.getCurrentSession();
-	    List<Profile> profileList = s.createQuery("FROM profile").list();
-	    System.out.println("Im about to print!!!");
-	    for (Profile i:profileList)
-	    	System.out.println(i.getScreenName());
-	    return sf;
+		sessionFactory = configuration.buildSessionFactory();
+    }
+
+	public static SessionFactory getSessionFactory() {
+		return sessionFactory;
 	}
 }
