@@ -31,6 +31,14 @@ public class GameController {
 		System.out.println("Gamecontroller post triggered");
 		System.out.println(answer);
 		
+		Answer nullAnswer = new Answer();
+		
+		if(answer.getId() == nullAnswer.getId()) {
+			System.out.println("this answer has no user id");
+		}else {
+			gService.updateProfile(answer);
+		}
+		
 		return ResponseEntity.status(HttpStatus.OK).build();
 	}
 }

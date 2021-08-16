@@ -3,13 +3,13 @@ package com.revature.models;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class Answer {
-	private int id;
+	private String id;
 	private String difficulty;
 	private String correctAnswer;
 	private String answer;
 	
 	@Autowired
-	public Answer(int id, String difficulty, String correctAnswer, String answer) {
+	public Answer(String id, String difficulty, String correctAnswer, String answer) {
 		super();
 		this.id = id;
 		this.difficulty = difficulty;
@@ -22,12 +22,12 @@ public class Answer {
 	public String 	getDifficulty() 	{ return difficulty;	}
 	public String 	getCorrectAnswer()	{ return correctAnswer;	}
 	public String 	getAnswer() 		{ return answer;		}
-	public int 		getId()				{ return id;			}
+	public String	getId()				{ return id;			}
 
 	public void	setDifficulty(String difficulty)		{ this.difficulty = difficulty;			}
 	public void	setCorrectAnswer(String correctAnswer)	{ this.correctAnswer = correctAnswer;	}
 	public void	setAnswer(String answer) 				{ this.answer = answer;					}
-	public void	setId(int id)							{ this.id = id;							}
+	public void	setId(String id)						{ this.id = id;							}
 
 	@Override
 	public int hashCode() {
@@ -36,7 +36,7 @@ public class Answer {
 		result = prime * result + ((answer == null) ? 0 : answer.hashCode());
 		result = prime * result + ((correctAnswer == null) ? 0 : correctAnswer.hashCode());
 		result = prime * result + ((difficulty == null) ? 0 : difficulty.hashCode());
-		result = prime * result + id;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
 

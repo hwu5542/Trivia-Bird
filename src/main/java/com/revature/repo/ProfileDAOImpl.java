@@ -49,7 +49,7 @@ public class ProfileDAOImpl implements ProfileDAO {
 	@Override
 	public void update(Profile profile) {
 		Session session = sessionFactory.getCurrentSession();
-		session.update(profile);
+		session.merge(profile);
 	}
 
 	@Override
