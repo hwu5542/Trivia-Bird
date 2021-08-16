@@ -29,18 +29,19 @@ public class ProfileService extends PasswordController {
 		List<Profile> topTenProfile = new ArrayList<Profile>();
 		
 		List<Profile> allProfile = profileDAO.getAllProfile();
-		
+
 		int count = 0;
 		for (int index = allProfile.size()-1; index >= 0; index--) {
 			if (count ++ < 10) {
 				topTenProfile.add(allProfile.get(index));
 			} else break;
-		}		
+		}
 		return topTenProfile;
 	}
 
 	public boolean logIn(Profile origProfile) {
 		Profile profile = profileDAO.findByUsername(origProfile.getUsername());
+		if (profile == null) return false;
 		return validatePassword(origProfile.getPassword(), profile.getPassword());
 	}
 	
