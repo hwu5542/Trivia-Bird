@@ -41,8 +41,7 @@ public class ProfileService extends PasswordController {
 
 	public boolean logIn(Profile origProfile) {
 		Profile profile = profileDAO.findByUsername(origProfile.getUsername());
-		validatePassword(origProfile.getPassword(), profile.getPassword());
-		return true;
+		return validatePassword(origProfile.getPassword(), profile.getPassword());
 	}
 	
 	public Boolean addProfile(Profile profile) {
@@ -54,7 +53,7 @@ public class ProfileService extends PasswordController {
 			return true;
 		}
 
-    System.out.println("Profile could not be added");
+		System.out.println("Profile could not be added");
 		return false;
 	}
 }
