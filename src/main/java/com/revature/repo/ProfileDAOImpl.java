@@ -58,6 +58,12 @@ public class ProfileDAOImpl implements ProfileDAO {
 		if (!this.testConstructor) this.session = sessionFactory.getCurrentSession();
 		this.session.saveOrUpdate(profile);
 	}
+	
+	@Override
+	public void update(Profile profile) {
+		Session session = sessionFactory.getCurrentSession();
+		session.merge(profile);
+	}
 
 	@Override
 	public Profile findByUsername(String username) {
