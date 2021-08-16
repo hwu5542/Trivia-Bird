@@ -44,7 +44,7 @@ public class ProfileDAOImpl implements ProfileDAO {
 	
 	
 	@Override
-	public void create(Profile profile) {
+	public void createProfile(Profile profile) {
 		// TODO Auto-generated method stub
 		Session session = sessionFactory.getCurrentSession();
 		session.saveOrUpdate(profile);
@@ -55,17 +55,6 @@ public class ProfileDAOImpl implements ProfileDAO {
 		// TODO Auto-generated method stub
 		Session session = sessionFactory.getCurrentSession();
 		Profile profile = session.get(Profile.class, username);
-		return profile;
-	}
-
-	@Override
-	public Profile logIn(String username, String password) {
-		// TODO Auto-generated method stub
-		Session session = sessionFactory.getCurrentSession();
-		Criteria criteria = session.createCriteria(Profile.class);
-		criteria.add(Restrictions.like(username, username));
-		criteria.add(Restrictions.like(password, password));
-		Profile profile = (Profile) criteria.uniqueResult();
 		return profile;
 	}
 }

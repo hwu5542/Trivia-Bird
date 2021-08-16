@@ -1,17 +1,17 @@
 package com.revature.services;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.revature.controllers.PasswordController;
 import com.revature.models.Profile;
 import com.revature.repo.ProfileDAO;
 
 @Service
-public class ProfileService {
+public class ProfileService extends PasswordController {
 
 	private ProfileDAO profileDAO;
 
@@ -39,14 +39,17 @@ public class ProfileService {
 		return topTenProfile;
 	}
 
-	public Profile logIn(String username, String password) {
-		return profileDAO.logIn(username, password);
+	public boolean logIn(Profile origProfile) {
+		Profile profile = profileDAO.findByUsername(origProfile.getUsername());
+		validatePassword(origProfile.getPassword(), profile.getPassword());
+		return true;
 	}
 	
 	public Boolean addProfile(Profile profile) {
 		Profile profile2 = profileDAO.findByUsername(profile.getUsername());
 		if(profile2 == null) {
-			profileDAO.create(profile);
+			profile.setPassword(passwordHash(profile.getPassword()));
+			profileDAO.createProfile(profile);
 			System.out.println("Profile successfully added");
 			return true;
 		}
