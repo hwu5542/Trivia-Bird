@@ -57,4 +57,18 @@ public class ProfileService extends PasswordController {
 		System.out.println("Profile could not be added");
 		return false;
 	}
+	
+	public void updateScreenName(Profile profile) {
+		profileDAO.update(profile);
+	}
+	
+	public void updateProfileBio(Profile profile) {
+		profileDAO.update(profile);
+	}
+	
+	public Profile getUserProfile(String username) {
+		return profileDAO.findByUsername(username);
+		
+	}
 }
+

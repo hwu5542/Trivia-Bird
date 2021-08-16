@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -50,5 +51,29 @@ public class ProfileController {
 			return ResponseEntity.status(HttpStatus.OK).body(newProfile);
 
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+	}
+	
+	@PutMapping
+	public ResponseEntity<Profile> updateScreenName(@RequestBody Profile profile){
+		
+		if(profile.getScreenName().length()<1) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+		}else {
+			profileService.updateScreenName(profile);
+			return ResponseEntity.status(HttpStatus.OK).body(profile);
+		}
+	}
+	
+	@PutMapping
+	public ResponseEntity<Profile> updateProfileBio(@RequestBody Profile profile){
+		
+		profileService.updateProfileBio(profile);
+		return ResponseEntity.status(HttpStatus.OK).body(profile);
+	}
+	
+	@GetMapping( "/{username}")
+	public Profile getUserProfile(@PathVariable("username") String username) {
+
+		return profileService.getUserProfile(username);
 	}
 }
