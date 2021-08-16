@@ -65,5 +65,10 @@ public class ProfileService extends PasswordController {
 	public void updateProfileBio(Profile profile) {
 		profileDAO.update(profile);
 	}
+	
+	public Profile getUserProfile(String username) {
+		return profileDAO.findByUsername(username);
+		
+	}
 }
 
