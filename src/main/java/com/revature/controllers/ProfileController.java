@@ -38,16 +38,16 @@ public class ProfileController {
 	@PostMapping
 	public ResponseEntity<Profile> logIn(@RequestBody Profile checkProfile) {
 		if(profileService.logIn(checkProfile)) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+			return ResponseEntity.status(HttpStatus.OK).body(checkProfile);
 		}
 		
-		return ResponseEntity.status(HttpStatus.OK).body(checkProfile);
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();		
 	}
 	
 	@PutMapping
 	public ResponseEntity<Profile> addProfile(@RequestBody Profile newProfile){
 		if (profileService.addProfile(newProfile))
-			return ResponseEntity.status(HttpStatus.OK).build();
+			return ResponseEntity.status(HttpStatus.OK).body(newProfile);
 
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 	}
