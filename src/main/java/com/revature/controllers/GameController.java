@@ -17,12 +17,12 @@ import com.revature.services.GameService;
 @RequestMapping(value="/game")
 @CrossOrigin(origins = "http://localhost:3000")
 public class GameController {
-	private GameService gService;
+	private GameService gameService;
 	
 	@Autowired
 	public GameController(GameService gameService) {
 		super();
-		this.gService = gameService;
+		this.gameService = gameService;
 	}
 	
 	@PostMapping
@@ -33,10 +33,10 @@ public class GameController {
 		
 		Answer nullAnswer = new Answer();
 		
-		if(answer.getId() == nullAnswer.getId()) {
+		if(answer.getUsername() == nullAnswer.getUsername()) {
 			System.out.println("this answer has no user id");
 		}else {
-			gService.updateProfile(answer);
+			gameService.updateProfile(answer);
 		}
 		
 		return ResponseEntity.status(HttpStatus.OK).build();

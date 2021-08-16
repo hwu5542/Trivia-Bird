@@ -23,8 +23,9 @@ public class GameService {
 	}
 	
 	public void updateProfile(Answer answer) {
-		Profile profile = profileDAO.findByUsername(answer.getId());
+		Profile profile = profileDAO.findByUsername(answer.getUsername());
 		
+		//Get the data
 		int numberOfAttemptedQuestions = profile.getNumber_of_questions() + 1;
 		int numberOfCorrectAnswers = profile.getScore();
 		
