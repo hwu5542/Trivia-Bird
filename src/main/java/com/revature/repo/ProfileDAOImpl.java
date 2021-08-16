@@ -50,7 +50,7 @@ public class ProfileDAOImpl implements ProfileDAO {
 		Root<Profile> root = criteriaQuery.from(Profile.class);
 		criteriaQuery.orderBy(criteriaBuilder.asc(root.get("score")));
 
-		return session.createQuery(criteriaQuery).getResultList();
+		return this.session.createQuery(criteriaQuery).getResultList();
 	}
 	
 	@Override
@@ -61,14 +61,14 @@ public class ProfileDAOImpl implements ProfileDAO {
 	
 	@Override
 	public void update(Profile profile) {
-		Session session = sessionFactory.getCurrentSession();
-		session.merge(profile);
+		if (!this.testConstructor) this.session = sessionFactory.getCurrentSession();
+		this.session.merge(profile);
 	}
 
 	@Override
 	public Profile findByUsername(String username) {
 		if (!this.testConstructor) this.session = sessionFactory.getCurrentSession();
-		Profile profile = session.get(Profile.class, username);
+		Profile profile = this.session.get(Profile.class, username);
 		return profile;
 	}
 	
