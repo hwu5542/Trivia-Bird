@@ -2,7 +2,9 @@ package com.revature.repo;
 
 import java.util.List;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -33,14 +35,16 @@ public class ProfileDAOImpl implements ProfileDAO {
 	@Override
 	public List<Profile> getAllProfile() {
 		Session session = sessionFactory.getCurrentSession();
-		CriteriaQuery<Profile> criteriaQuery = session.getCriteriaBuilder().createQuery(Profile.class);
-		criteriaQuery.from(Profile.class);
+		CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+		CriteriaQuery<Profile> criteriaQuery = criteriaBuilder.createQuery(Profile.class);
+		Root<Profile> root = criteriaQuery.from(Profile.class);
+		criteriaQuery.orderBy(criteriaBuilder.asc(root.get("score")));
 		return session.createQuery(criteriaQuery).getResultList();
 	}
 	
 	
 	@Override
-	public void create(Profile profile) {
+	public void createProfile(Profile profile) {
 		// TODO Auto-generated method stub
 		Session session = sessionFactory.getCurrentSession();
 		session.saveOrUpdate(profile);
@@ -57,17 +61,6 @@ public class ProfileDAOImpl implements ProfileDAO {
 		// TODO Auto-generated method stub
 		Session session = sessionFactory.getCurrentSession();
 		Profile profile = session.get(Profile.class, username);
-		return profile;
-	}
-
-	@Override
-	public Profile logIn(String username, String password) {
-		// TODO Auto-generated method stub
-		Session session = sessionFactory.getCurrentSession();
-		Criteria criteria = session.createCriteria(Profile.class);
-		criteria.add(Restrictions.like(username, username));
-		criteria.add(Restrictions.like(password, password));
-		Profile profile = (Profile) criteria.uniqueResult();
 		return profile;
 	}
 }
