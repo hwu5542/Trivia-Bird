@@ -7,14 +7,19 @@ import org.junit.jupiter.api.Test;
 
 import com.revature.Config.TestConfig;
 import com.revature.models.Profile;
+import com.revature.repo.ProfileDAO;
+import com.revature.repo.ProfileDAOImpl;
 
 public class TestProfileService {
 	private static ProfileService profileService;
+	private static ProfileDAO profileDAO;
+	private static TestConfig testConfig;
 	
 	@BeforeAll
 	public static void addProfiles() {
-		TestConfig testConfig = new TestConfig();
-		profileService = testConfig.getProfileService();
+		testConfig = new TestConfig();
+		profileDAO = new ProfileDAOImpl(testConfig.getSessionFactory(), true);
+		profileService = new ProfileService(profileDAO);		
 	}
 
 	@Test
