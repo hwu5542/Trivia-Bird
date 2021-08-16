@@ -60,14 +60,18 @@ public class ProfileController {
 	@PutMapping
 	public ResponseEntity<Profile> updateScreenName(@RequestBody Profile profile){
 		
-		profileService.updateScreenName(profile);
-		return ResponseEntity.status(HttpStatus.OK).body(profile);
+		if(profile.getScreenName().length()<1) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+		}else {
+			profileService.updateScreenName(profile);
+			return ResponseEntity.status(HttpStatus.OK).body(profile);
+		}
 	}
 	
 	@PutMapping
 	public ResponseEntity<Profile> updateProfileBio(@RequestBody Profile profile){
 		
-		profileService.updateScreenName(profile);
+		profileService.updateProfileBio(profile);
 		return ResponseEntity.status(HttpStatus.OK).body(profile);
 	}
 }
