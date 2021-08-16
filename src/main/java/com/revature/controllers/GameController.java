@@ -27,8 +27,10 @@ public class GameController {
 	
 	@PostMapping
 	public ResponseEntity<Profile> updateUser(@RequestBody Answer answer) {
+		//debug
 		System.out.println("Gamecontroller post triggered");
 		System.out.println(answer);
+		
 		return ResponseEntity.status(HttpStatus.OK).build();
 	}
 }

@@ -3,27 +3,31 @@ package com.revature.models;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class Answer {
+	private int id;
 	private String difficulty;
 	private String correctAnswer;
 	private String answer;
 	
 	@Autowired
-	public Answer(String difficulty, String correctAnswer, String answer) {
+	public Answer(int id, String difficulty, String correctAnswer, String answer) {
 		super();
+		this.id = id;
 		this.difficulty = difficulty;
 		this.correctAnswer = correctAnswer;
 		this.answer = answer;
 	}
 
 	public Answer() {}
+	
+	public String 	getDifficulty() 	{ return difficulty;	}
+	public String 	getCorrectAnswer()	{ return correctAnswer;	}
+	public String 	getAnswer() 		{ return answer;		}
+	public int 		getId()				{ return id;			}
 
-	public String getDifficulty() 		{ return difficulty;	}
-	public String getCorrectAnswer()	{ return correctAnswer;	}
-	public String getAnswer() 			{ return answer;		}
-
-	public void setDifficulty(String difficulty)		{ this.difficulty = difficulty;			}
-	public void setCorrectAnswer(String correctAnswer)	{ this.correctAnswer = correctAnswer;	}
-	public void setAnswer(String answer) 				{ this.answer = answer;					}
+	public void	setDifficulty(String difficulty)		{ this.difficulty = difficulty;			}
+	public void	setCorrectAnswer(String correctAnswer)	{ this.correctAnswer = correctAnswer;	}
+	public void	setAnswer(String answer) 				{ this.answer = answer;					}
+	public void	setId(int id)							{ this.id = id;							}
 
 	@Override
 	public int hashCode() {
@@ -32,6 +36,7 @@ public class Answer {
 		result = prime * result + ((answer == null) ? 0 : answer.hashCode());
 		result = prime * result + ((correctAnswer == null) ? 0 : correctAnswer.hashCode());
 		result = prime * result + ((difficulty == null) ? 0 : difficulty.hashCode());
+		result = prime * result + id;
 		return result;
 	}
 
@@ -59,12 +64,15 @@ public class Answer {
 				return false;
 		} else if (!difficulty.equals(other.difficulty))
 			return false;
+		if (id != other.id)
+			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Answer [difficulty=" + difficulty + ", correctAnswer=" + correctAnswer + ", answer=" + answer + "]";
+		return "Answer [id=" + id + ", difficulty=" + difficulty + ", correctAnswer=" + correctAnswer + ", answer="
+				+ answer + "]";
 	}
 	
 	
