@@ -10,4 +10,5 @@ public interface ProfileDAO {
 	public void create(Profile profile);
 	public Profile findByUsername(String username);
 	public Profile logIn(String username, String password);
+	public void update(Profile profile);
 }

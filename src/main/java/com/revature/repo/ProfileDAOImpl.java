@@ -64,4 +64,10 @@ public class ProfileDAOImpl implements ProfileDAO {
 		Profile profile = (Profile) criteria.uniqueResult();
 		return profile;
 	}
+
+	@Override
+	public void update(Profile profile) {
+		Session session = sessionFactory.getCurrentSession();
+		session.update(profile);
+	}
 }

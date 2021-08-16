@@ -42,4 +42,12 @@ public class ProfileService {
     System.out.println("Profile could not be added");
 		return false;
 	}
+	
+	public void updateScreenName(Profile profile) {
+		profileDAO.update(profile);
+	}
+	
+	public void updateProfileBio(Profile profile) {
+		profileDAO.update(profile);
+	}
 }

@@ -9,11 +9,14 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.revature.models.Pokemon;
 import com.revature.models.Profile;
+import com.revature.models.Trainer;
 import com.revature.services.ProfileService;
 
 
@@ -52,5 +55,19 @@ public class ProfileController {
 			return ResponseEntity.status(HttpStatus.OK).build();
 		else
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+	}
+	
+	@PutMapping
+	public ResponseEntity<Profile> updateScreenName(@RequestBody Profile profile){
+		
+		profileService.updateScreenName(profile);
+		return ResponseEntity.status(HttpStatus.OK).body(profile);
+	}
+	
+	@PutMapping
+	public ResponseEntity<Profile> updateProfileBio(@RequestBody Profile profile){
+		
+		profileService.updateScreenName(profile);
+		return ResponseEntity.status(HttpStatus.OK).body(profile);
 	}
 }
